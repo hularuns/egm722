@@ -35,11 +35,12 @@ def scale_bar(ax, location=(0.92, 0.95)):
 
 
 # load the datasets
-outline = gpd.read_file(os.path.abspath('data_files/NI_outline.shp'))
-towns = gpd.read_file(os.path.abspath('data_files/Towns.shp'))
-water = gpd.read_file(os.path.abspath('data_files/Water.shp'))
-rivers = gpd.read_file(os.path.abspath('data_files/Rivers.shp'))
-counties = gpd.read_file(os.path.abspath('data_files/Counties.shp'))
+outline = gpd.read_file('Week2/data_files/NI_outline.shp')
+towns = gpd.read_file(os.path.abspath('Week2/data_files/Towns.shp'))
+water = gpd.read_file(os.path.abspath('Week2/data_files/Water.shp'))
+rivers = gpd.read_file(os.path.abspath('Week2/data_files/Rivers.shp'))
+counties = gpd.read_file(os.path.abspath('Week2/data_files/Counties.shp'))
+
 
 ni_utm = ccrs.UTM(29)  # create a Universal Transverse Mercator reference system to transform our data.
 # NI is in UTM Zone 29, so we pass 29 to ccrs.UTM()
@@ -69,11 +70,11 @@ county_names.sort() # sort the counties alphabetically by name
 # here, we're iterating over the unique values in the 'CountyName' field.
 # we're also setting the edge color to be black, with a line width of 0.5 pt. 
 # Feel free to experiment with different colors and line widths.
-for ii, name in enumerate(county_names):
+for i, name in enumerate(county_names):
     feat = ShapelyFeature(counties.loc[counties['CountyName'] == name, 'geometry'], # first argument is the geometry
                           ccrs.CRS(counties.crs), # second argument is the CRS
                           edgecolor='k', # outline the feature in black
-                          facecolor=county_colors[ii], # set the face color to the corresponding color from the list
+                          facecolor=county_colors[i], # set the face color to the corresponding color from the list
                           linewidth=1, # set the outline width to be 1 pt
                           alpha=0.25) # set the alpha (transparency) to be 0.25 (out of 1)
     ax.add_feature(feat) # once we have created the feature, we have to add it to the map using ax.add_feature()
@@ -133,4 +134,4 @@ for ind, row in towns.iterrows(): # towns.iterrows() returns the index and row
 scale_bar(ax)
 
 # save the figure as map.png, cropped to the axis (bbox_inches='tight'), and a dpi of 300
-myFig.savefig('map.png', bbox_inches='tight', dpi=300)
+myFig.savefig('map23.png', bbox_inches='tight', dpi=300)
