@@ -6,11 +6,7 @@ invent = {'rope':1, 'gold coin': 42, 'arrow': 12, 'torch': 6, 'dagger': 1}
 dragonLoot = ['gold coin', 'dwarf head', 'dagger', 'gold coin', 'gold coin', 'ruby']
 
 
-#For each item in the inventory dictionary, counts the inventory
-#this way not as good.
-# def displayInventory(inventory):
-#     for item in inventory:
-#         print(str(inventory[item]) + ' ' + item)
+
 
 #If a dragon is looted.
 
@@ -27,6 +23,17 @@ def displayInventory(inventory):
         print(str(quantity) + ' ' + item)
         item_total += quantity
     print("Total number of items: " + str(item_total))
+
+""" #For each item in the inventory dictionary, counts the inventory
+#this way not as good
+def displayInventory(inventory):
+    itemTotal = 0
+    for item in inventory:
+        itemQuantity = inventory[item]
+        itemTotal += itemQuantity
+        print(str(inventory[item]) + ' ' + item)
+    print('Total objects: ' + str(itemTotal))
+ """
 
 invent = addToInventory(invent, dragonLoot)
 displayInventory(invent)
